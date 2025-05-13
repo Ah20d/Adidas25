@@ -1,0 +1,25 @@
+<header>
+    <nav class="navbar">
+        <div class="container">
+            <a href="{{ url_for(\'serve\', path=\'index.html\') }}" class="navbar-brand">ATM Followr</a>
+            <ul class="navbar-nav">
+                <li><a href="{{ url_for(\'serve\', path=\'index.html\') }}">الرئيسية</a></li>
+                <li><a href="{{ url_for(\'services.list_categories\') }}">الخدمات</a></li>
+                <li><a href="{{ url_for(\'services.order_history\') }}">سجل الطلبات</a></li>
+                <li><a href="#how-it-works">كيف نعمل</a></li>
+                <li><a href="#faq">الأسئلة الشائعة</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <div class="auth-buttons">
+                {% if session.user_id %}
+                    <span style="color: #ffffff; margin-left: 15px;">مرحباً, {{ session.username }}</span>
+                    <a href="{{ url_for(\'auth.logout\') }}" class="btn btn-login">تسجيل الخروج</a>
+                {% else %}
+                    <a href="{{ url_for(\'auth.login\') }}" class="btn btn-login">تسجيل الدخول</a>
+                    <a href="{{ url_for(\'auth.register\') }}" class="btn btn-register">إنشاء حساب</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+

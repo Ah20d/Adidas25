@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ service.name }} - تفاصيل الخدمة - ATM Followr</title>
+    <link rel="stylesheet" href="{{ url_for(\'static\', filename=\'style.css\') }}">
+    <style>
+        .page-container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #0d0d2b;
+            border-radius: 8px;
+        }
+        .page-container h1 {
+            color: #0099ff;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .service-detail-card {
+            background-color: #08081a;
+            border: 1px solid #003366;
+            padding: 25px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .service-detail-card .service-description {
+            color: #bbbbbb;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .service-detail-card .service-price {
+            color: #00ff99;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        .order-form h2 {
+            color: #0099ff;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            color: #cccccc;
+            margin-bottom: 8px;
+        }
+        .form-group input[type=\"number\"],
+        .form-group input[type=\"text\"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #000000;
+            border: 1px solid #007bff;
+            color: #ffffff;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group input[type=\"submit\"] {
+            width: auto;
+            min-width: 150px;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+        .form-group input[type=\"submit\"]:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+         .flash-messages {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .flash-messages li {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .flash-messages .success {
+            background-color: #28a745;
+            color: white;
+        }
+        .flash-messages .danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .flash-messages .warning {
+            background-color: #ffc107;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    {% include \'header_logged_in.html\' %}
+
+    <div class="page-container">
+        <a href="{{ url_for(\'services.list_services_in_category\', category_id=service.category_id) }}" class="back-link">&larr; العودة إلى خدمات الفئة</a>
+        <h1>{{ service.name }}</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flash-messages">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <div class="service-detail-card">
+            <p class="service-description">{{ service.description }}</p>
+            <p class="service-price">السعر: {{ "%.2f"|format(service.price) }} $</p>
+            <!-- You can display more details from service.details_json if needed -->
+        </div>
+
+        <div class="order-form">
+            <h2>تقديم طلب لهذه الخدمة</h2>
+            <form method="POST" action="{{ url_for(\'services.place_order\', service_id=service.id) }}">
+                <div class="form-group">
+                    <label for="quantity">الكمية</label>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="order_details_input">معلومات إضافية للطلب (مثال: رابط الحساب، اسم المستخدم)</label>
+                    <textarea id="order_details_input" name="order_details_input" rows="3" placeholder="ادخل هنا الرابط أو اسم المستخدم المطلوب للخدمة..."></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="تأكيد الطلب">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% include \'footer.html\' %}
+</body>
+</html>
+
