@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الخدمات في الفئة - ATM Followr</title>
+    <link rel="stylesheet" href="{{ url_for(\'static\', filename=\'style.css\') }}">
+    <style>
+        .page-container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #0d0d2b;
+            border-radius: 8px;
+        }
+        .page-container h1 {
+            color: #0099ff;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .page-container .category-description {
+            color: #bbbbbb;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        .service-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .service-list li {
+            background-color: #08081a;
+            border: 1px solid #003366;
+            padding: 20px;
+            border-radius: 5px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .service-list li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,123,255,0.2);
+        }
+        .service-list li h3 a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.2em;
+        }
+        .service-list li .service-description {
+            color: #bbbbbb;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+        .service-list li .service-price {
+            color: #00ff99; /* Bright green for price */
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .service-list li .btn-details {
+            display: inline-block;
+            background-color: #007bff;
+            color: #000000;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .service-list li .btn-details:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+        .no-services {
+            text-align: center;
+            color: #cccccc;
+            font-size: 1.1em;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% include \'header_logged_in.html\' %}
+
+    <div class="page-container">
+        <h1>خدمات فئة: {{ category.name }}</h1>
+        {% if category.description %}
+            <p class="category-description">{{ category.description }}</p>
+        {% endif %}
+
+        <a href="{{ url_for(\'services.list_categories\') }}" class="back-link">&larr; العودة إلى جميع الفئات</a>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flash-messages" style="list-style: none; padding: 0; margin-bottom: 20px;">
+            {% for category_flash, message in messages %}
+              <li class="{{ category_flash }}" style="padding: 10px; margin-bottom: 10px; border-radius: 5px; text-align: center; color: white; background-color: {{ \'#28a745\' if category_flash == \'success\' else (\'#dc3545\' if category_flash == \'danger\' else \'#17a2b8\') }};">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        {% if services %}
+            <ul class="service-list">
+                {% for service in services %}
+                    <li>
+                        <h3><a href="{{ url_for(\'services.service_details\', service_id=service.id) }}">{{ service.name }}</a></h3>
+                        <p class="service-description">{{ service.description | truncate(120) }}</p>
+                        <p class="service-price">السعر: {{ "%.2f"|format(service.price) }} $</p>
+                        <a href="{{ url_for(\'services.service_details\', service_id=service.id) }}" class="btn btn-details">عرض التفاصيل والطلب</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-services">لا توجد خدمات متاحة في هذه الفئة حالياً.</p>
+        {% endif %}
+    </div>
+
+    {% include \'footer.html\' %}
+</body>
+</html>
+

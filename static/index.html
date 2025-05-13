@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Followr</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="navbar-brand">ATM Followr</a>
+                <ul class="navbar-nav">
+                    <li><a href="#">الرئيسية</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">الخدمات <span class="arrow">&#9662;</span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#social-media">خدمات التواصل الاجتماعي</a></li>
+                            <li><a href="#gaming">خدمات الألعاب</a></li>
+                            <li><a href="#utility">خدمات أخرى ومنفعة</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#how-it-works">كيف نعمل</a></li>
+                    <li><a href="#faq">الأسئلة الشائعة</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="#login" class="btn btn-login">تسجيل الدخول</a>
+                    <a href="#register" class="btn btn-register">إنشاء حساب</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="hero">
+            <h1>مرحباً بك في ATM Followr</h1>
+            <p>وجهتك الأولى لجميع خدمات الدعم الرقمي.</p>
+            <a href="#services" class="btn btn-primary">استكشف خدماتنا</a>
+        </section>
+
+        <section id="services" class="services-overview">
+            <h2>خدماتنا المميزة</h2>
+            <div class="service-category" id="social-media">
+                <h3>خدمات التواصل الاجتماعي</h3>
+                <p>نوفر لك كل ما تحتاجه لتنمية حساباتك على منصات التواصل الاجتماعي المختلفة.</p>
+                <!-- Service items will be listed here -->
+            </div>
+            <div class="service-category" id="gaming">
+                <h3>خدمات الألعاب</h3>
+                <p>شحن عملات الألعاب، حسابات مميزة، والمزيد لتعزيز تجربتك في اللعب.</p>
+                <!-- Service items will be listed here -->
+            </div>
+            <div class="service-category" id="utility">
+                <h3>خدمات أخرى ومنفعة</h3>
+                <p>مجموعة متنوعة من الخدمات الرقمية الأخرى لتلبية احتياجاتك.</p>
+                <!-- Service items will be listed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ATM Followr. جميع الحقوق محفوظة.</p>
+            <ul class="footer-links">
+                <li><a href="#">معلومات عنا</a></li>
+                <li><a href="#">شروط الخدمة</a></li>
+                <li><a href="#">سياسة الخصوصية</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // Basic dropdown toggle for services menu
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+
+        if (dropdownToggle && dropdownMenu) {
+            dropdownToggle.addEventListener('click', function(event) {
+                event.preventDefault();
+                dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener('click', function(event) {
+                if (!dropdownToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

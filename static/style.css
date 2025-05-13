@@ -1,0 +1,252 @@
+/* General Body Styles */
+body {
+    font-family: 'Cairo', sans-serif; /* Using a common Arabic font, can be changed */
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text */
+    direction: rtl; /* Right-to-left for Arabic */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header and Navigation Bar */
+header {
+    background-color: #0a0a23; /* Very dark blue, almost black for header */
+    padding: 10px 0;
+    border-bottom: 2px solid #007bff; /* Blue accent border */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #007bff; /* Blue for brand name */
+    text-decoration: none;
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar-nav li {
+    margin-left: 20px; /* Spacing between nav items */
+}
+
+.navbar-nav li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 5px;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav li a:hover,
+.navbar-nav li a:focus {
+    color: #007bff; /* Blue on hover/focus */
+}
+
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle .arrow {
+    font-size: 0.8em;
+    margin-right: 5px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0; /* Align to the right for RTL */
+    background-color: #1c1c3c; /* Darker blue for dropdown */
+    border: 1px solid #0056b3; /* Slightly lighter blue border */
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    min-width: 200px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 8px 15px;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #007bff;
+    color: #000000;
+}
+
+/* Authentication Buttons */
+.auth-buttons a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-login {
+    background-color: transparent;
+    border: 1px solid #007bff;
+}
+
+.btn-login:hover {
+    background-color: #007bff;
+    color: #000000;
+}
+
+.btn-register {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: #000000;
+}
+
+.btn-register:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    color: #ffffff;
+}
+
+/* Main Content Area */
+main.container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* Hero Section */
+#hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #0d0d2b; /* Dark blue shade */
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+#hero h1 {
+    font-size: 2.8em;
+    color: #0099ff; /* Brighter blue for heading */
+    margin-bottom: 20px;
+}
+
+#hero p {
+    font-size: 1.2em;
+    color: #cccccc; /* Light grey for paragraph */
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #000000;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Services Overview Section */
+.services-overview h2 {
+    text-align: center;
+    font-size: 2.2em;
+    color: #0099ff;
+    margin-bottom: 40px;
+}
+
+.service-category {
+    background-color: #08081a; /* Very dark blue, almost black for category cards */
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    border: 1px solid #003366; /* Dark blue border */
+    box-shadow: 0 2px 5px rgba(0,123,255,0.1);
+}
+
+.service-category h3 {
+    font-size: 1.8em;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.service-category p {
+    font-size: 1em;
+    color: #bbbbbb;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    background-color: #0a0a23; /* Same as header */
+    color: #aaaaaa;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 2px solid #007bff;
+    margin-top: 40px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+
+.footer-links li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.footer-links li a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.footer-links li a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments (Basic Example) */
+@media (max-width: 768px) {
+    .navbar-nav {
+        display: none; /* Simple hide for mobile, can be replaced with a burger menu */
+    }
+    .auth-buttons {
+        display: none; /* Hide auth buttons on smaller screens for simplicity */
+    }
+    #hero h1 {
+        font-size: 2em;
+    }
+    .navbar-brand {
+        font-size: 1.5em;
+    }
+}
+
